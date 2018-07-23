@@ -5,6 +5,7 @@ library(RUnit)
 # Add all the source files for the functions that will be tested #
 source("data_acquisition.R")
 source("metric_calculation.R")
+source("df_manipulations.R")
 
 tests.directory <- "tests"
 
@@ -25,8 +26,13 @@ test.suite.doorbusters.metrics <- defineTestSuite("Doorbusters Metric Calculatio
                                                   dirs = tests.directory,
                                                   testFileRegexp = '^doorbusters_tests_metrics*.+\\.R')
 
+# test suite for dataframe manipulations #
+test.suite.doorbusters.df.manipulations <- defineTestSuite("Dataframe Manipulations",
+                                                           dirs = tests.directory,
+                                                           testFileRegexp = "^tests_df_manipulation*.+\\R")
+
 # define the collection of test suites #
-doorbusters.test.suites <- list(test.suite.doorbusters.data.acquisition, test.suite.doorbusters.metrics)
+doorbusters.test.suites <- list(test.suite.doorbusters.data.acquisition, test.suite.doorbusters.metrics, test.suite.doorbusters.df.manipulations)
 
 # Execute the test suites #
 test.results <- runTestSuite(doorbusters.test.suites, verbose = 1)
